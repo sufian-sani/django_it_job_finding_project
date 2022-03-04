@@ -1,0 +1,53 @@
+{% extends 'basic.html' %}
+{% load crispy_forms_tags %}
+{% block body %}
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <img src="{{user.userprofile.image.url}}" class="w-50" alt="">
+    </div>
+    <div class="col">
+      <button type="" class="btn btn-secondary" name=""><a href="/tuition/pdf">Pdf</a></button><br>
+      <button type="" class="btn btn-info" name=""><a href="/session/tuitionpro">Tuition Profile Create</a></button>
+      <br>
+      <h6>Name={{user.userprofile}}</h6>
+      {% if user.userprofile %}
+      Blood_group={{user.userprofile.blood_group}} <br>
+      gender={{user.userprofile.gender}} <br>
+      nationality={{user.userprofile.nationality}} <br>
+      religion={{user.userprofile.religion}} <br>
+      biodata={{user.userprofile.biodata}} <br>
+      category={{user.userprofile.category}} <br>
+      birth_date={{user.userprofile.birth_date}} <br>
+      address={{user.userprofile.address}} <br>
+      phone={{user.userprofile.phone}} <br>
+      {% endif %}
+    </div>
+  </div>
+  <div class="row">
+    <div class="con-md-6">
+      {% if user.jobprofile %}
+      <div class="my-5">
+      <b><h3 class="border-bottom m-4"><legend> Job Related Information</legend></h3></b>
+      district={{user.jobprofile.district}} <br>
+      <!-- style={{user.jobprofile.style}} <br> -->
+      approach={{user.jobprofile.approach}} <br>
+      skill={{user.jobprofile.skill}} <br>
+      <!-- medium={{user.jobprofile.medium}} <br> -->
+      <!-- salary={{user.jobprofile.salary}} <br> -->
+      <!-- days_per_week={{user.jobprofile.days_per_week}} <br> -->
+      education={{user.jobprofile.education}} <br>
+      status={{user.jobprofile.status}} <br>
+      <!-- Subject= {% for s in user.jobprofile.subject.all %} {{s}} -->
+      <!-- {% if not forloop.last %},{% endif %}
+      {% endfor %}  <br>
+      {% endif %}
+      Class= {% for s in user.tuitionprofile.class_in.all %} {{s}}
+      {% if not forloop.last %},{% endif %}
+      {% endfor %}  <br> -->
+    </div>
+  </div>
+</div>
+
+{% endblock %}
