@@ -22,7 +22,7 @@ from django.conf import settings
 
 from django.views.generic import TemplateView
 
-from tuition.views import PostListView
+from jobpost.views import PostListView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -30,7 +30,7 @@ urlpatterns = [
     # path('', HomeView.as_view(), name='homeview'),
     path('', PostListView.as_view(), name='homeview'),
     # path('', TemplateView.as_view(template_name='home.html'), name='homeview'),
-    path('jobpost/', include('tuition.urls')),
+    path('jobpost/', include('jobpost.urls')),
     path('session/', include('session.urls')),
     path('inbox/notifications/', include('notifications.urls', namespace='notifications')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

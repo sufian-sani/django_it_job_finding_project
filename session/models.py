@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from PIL import Image
-from tuition.models import District
+from jobpost.models import District
 # from tuition.models import District,Subject,Class_in
 from multiselectfield import MultiSelectField
 

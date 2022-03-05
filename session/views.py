@@ -148,7 +148,7 @@ def jobprofile(request):
             #     obj.class_in.add(i)
             #     obj.save()
             messages.success(request, "Successfully Saved Your Profile")
-            return redirect('ownerprofile')
+            return redirect('session:ownerprofile')
     else:
         form=JobProfileForm(instance=instance)
     context={
