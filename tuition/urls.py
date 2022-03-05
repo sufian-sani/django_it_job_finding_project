@@ -3,7 +3,7 @@ from .views import *
 from .forms import *
 from .pdf import *
 
-app_name = 'tuition'
+app_name = 'jobpost'
 
 urlpatterns = [
     # path('contact/', contact, name='contact'),

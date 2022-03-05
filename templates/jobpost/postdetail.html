@@ -6,7 +6,7 @@
 <div class="container">
   <h1 class="text-center">Post Detail:</h1>
   <hr>
-  <div class="fb-like" data-href="http://127.0.0.1:8000/tuition/postdetail/{{object.id}}/" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true"></div>
+  <div class="fb-like" data-href="http://127.0.0.1:8000/jobpost/postdetail/{{object.id}}/" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true"></div>
   <div class="col-md-6">
     <img src="{{object.image.url}}" alt=""  class="rounded-circle w-50 img-thumbnail">
   </div>
@@ -15,11 +15,11 @@
     by: {{object.user.username}} at: {{object.created_at| naturaltime}}
     <br>
     {% if request.user == object.user %}
-    <a href="/tuition/edit/{{object.id}}" class="btn btn-danger">Edit</a>
+    <a href="/jobpost/edit/{{object.id}}" class="btn btn-danger">Edit</a>
     <br><br>
-    <a href="/tuition/addphoto/{{object.id}}" class="btn btn-danger">Addphoto</a>
+    <a href="/jobpost/addphoto/{{object.id}}" class="btn btn-danger">Addphoto</a>
     <br><br>
-    <a href="/tuition/delete/{{object.id}}" class="btn btn-danger">Delete</a>
+    <a href="/jobpost/delete/{{object.id}}" class="btn btn-danger">Delete</a>
     {% endif %}
 
     <!-- <br>
@@ -47,7 +47,7 @@
     <p>{{object.total_likes}} Peoples liked this Post</p>
   </div>
   <div class="">
-    <form class="" action="/tuition/likepost/{{object.id}}/" method="post">
+    <form class="" action="/jobpost/likepost/{{object.id}}/" method="post">
       {% csrf_token %}
 
       {% if liked %}
@@ -58,11 +58,11 @@
     </form>
   </div>
   <div class="">
-    <a href="/tuition/apply/{{object.id}}/" class="btn">Apply for this tuition</a>
+    <a href="/jobpost/apply/{{object.id}}/" class="btn">Apply for this Job</a>
   </div>
 
   <div class="">
-    <form class="" action="/tuition/addcomment/" method="post">
+    <form class="" action="/jobpost/addcomment/" method="post">
       {% csrf_token %}
       <div class="form-group">
         <label for="">Your Comment</label>
@@ -105,7 +105,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-danger"><a href="/tuition/commentdelete/{{comment.id}}/">Delete</a></button>
+        <button type="button" class="btn btn-danger"><a href="/jobpost/commentdelete/{{comment.id}}/">Delete</a></button>
       </div>
     </div>
   </div>
@@ -113,7 +113,7 @@
 
 
         <div class="row">
-          <form class="" action="/tuition/addcomment/" method="post">
+          <form class="" action="/jobpost/addcomment/" method="post">
             {% csrf_token %}
             <div class="form-group">
               <label for="">Your Reply</label>
@@ -154,7 +154,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-danger"><a href="/tuition/commentdelete/{{reply.id}}/">Delete</a></button>
+              <button type="button" class="btn btn-danger"><a href="/jobpost/commentdelete/{{reply.id}}/">Delete</a></button>
             </div>
           </div>
         </div>
@@ -168,7 +168,7 @@
   </div>
 
   <div class="">
-    <div class="fb-comments" data-href="http://127.0.0.1:8000/tuition/postdetail/{{object.id}}/" data-width="" data-numposts="5"></div>
+    <div class="fb-comments" data-href="http://127.0.0.1:8000/jobpost/postdetail/{{object.id}}/" data-width="" data-numposts="5"></div>
   </div>
 
 </div>

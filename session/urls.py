@@ -4,7 +4,7 @@ from .views import *
 from django.contrib.auth.views import PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView, PasswordResetCompleteView
 # from .forms import *
 
-# app_name = 'session'
+app_name = 'session'
 
 urlpatterns = [
     path('login/', loginuser, name='login'),
@@ -13,7 +13,7 @@ urlpatterns = [
     path('ownerprofile/', ownerprofile, name='ownerprofile'),
     path('signup/', registration, name='signup'),
     path('notification/', notification, name='notification'),
-    path('tuitionpro/', jobprofile, name='tuitionpro'),
+    path('jobprofile/', jobprofile, name='jobprofile'),
     path('otherprofile/<str:username>/', otherprofile, name='otherprofile'),
     path('password/', change_password, name='password'),
     path('activate/<uidb64>/<token>/', activate, name='activate'),

@@ -4,8 +4,8 @@ from django.utils import timezone
 from django.utils.html import format_html
 # Register your models here.
 
-admin.site.site_header = 'TuitionBD Admin Panel'
-admin.site.site_title = 'TuitionBD Admin Panel'
+admin.site.site_header = 'It-Job BD Admin Panel'
+admin.site.site_title = 'It-Job BD Admin Panel'
 admin.site.index_title = ''
 
 class CommentInline(admin.TabularInline):

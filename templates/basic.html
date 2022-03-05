@@ -47,8 +47,8 @@
               Post
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="/tuition/postlist/">View</a>
-              <a class="dropdown-item" href="/tuition/create/">Create</a>
+              <a class="dropdown-item" href="/jobpost/postlist/">View</a>
+              <a class="dropdown-item" href="/jobpost/create/">Create</a>
             </div>
           </li>
 
@@ -59,7 +59,7 @@
             <a class="nav-link" href="">{% now "D jS F Y" %}</a>
           </li> -->
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'tuition:contact' %}">Contact</a>
+            <a class="nav-link" href="{% url 'jobpost:contact' %}">Contact</a>
           </li>
           {% if user.is_authenticated %}
           <li class="nav-item dropdown">
@@ -84,7 +84,7 @@
 
         </ul>
 
-        <form method="post" action="/tuition/search/" class="form-inline my-2 my-lg-0">
+        <form method="post" action="/jobpost/search/" class="form-inline my-2 my-lg-0">
           {% csrf_token %}
           <input class="form-control mr-sm-2" type="search" placeholder="Search" name="search" aria-label="Search">
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>

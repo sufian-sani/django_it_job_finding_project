@@ -14,7 +14,7 @@ from notifications.signals import notify
 from session.models import *
 # Create your views here.
 
-app_name = 'tuition'
+app_name = 'jobpost'
 
 def search(request):
     query=request.POST.get('search','')
@@ -26,7 +26,7 @@ def search(request):
     context={
         'results':results
     }
-    return render(request, 'tuition/search.html', context)
+    return render(request, 'jobpost/search.html', context)
 
 def filter(request):
     filterform = MultiFieldsFilterForm()
@@ -61,7 +61,7 @@ def filter(request):
         context={
             'results':results
         }
-        return render(request, 'tuition/search.html', context)
+        return render(request, 'jobpost/search.html', context)
 
 class ContactView(FormView):
     form_class = ContactForm
@@ -107,7 +107,7 @@ def contact(request):
     return render(request, 'contact.html',{'form':form})
 
 class PostListView(ListView):
-    template_name='tuition/postlist.html'
+    template_name='jobpost/postlist.html'
     queryset=Post.objects.all()
     model=Post
     context_object_name='posts'
@@ -122,11 +122,11 @@ class PostListView(ListView):
 
 def postview(request):
     post = Post.objects.all()
-    return render(request, 'tuition/postview.html', {'post':post})
+    return render(request, 'jobpost/postview.html', {'post':post})
 
 class PostDetailView(DetailView):
     model = Post
-    template_name = 'tuition/postdetail.html'
+    template_name = 'jobpost/postdetail.html'
     def get_context_data(self, *args, **kwargs):
         self.object.views.add(self.request.user)
 
@@ -159,27 +159,27 @@ class PostDetailView(DetailView):
 class PostCreateView(CreateView):
     model = Post
     form_class = PostForm
-    template_name = 'tuition/postcreate.html'
+    template_name = 'jobpost/postcreate.html'
     # success_url = '/'
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
     def get_success_url(self):
         # id = self.object.id
-        return reverse_lazy('tuition:posts')
+        return reverse_lazy('jobpost:posts')
 
 class PostEditView(UpdateView):
     model = Post
     form_class = PostForm
-    template_name = 'tuition/postcreate.html'
+    template_name = 'jobpost/postcreate.html'
     def get_success_url(self):
         id = self.object.id
-        return reverse_lazy('tuition:postdetail', kwargs={'pk':id})
+        return reverse_lazy('jobpost:postdetail', kwargs={'pk':id})
 
 class PostDeleteView(DeleteView):
     model = Post
-    template_name = "tuition/delete.html"
-    success_url = reverse_lazy('tuition:postlist')
+    template_name = "jobpost/delete.html"
+    success_url = reverse_lazy('jobpost:postlist')
 
 def commentdelete(request,id):
     comment=Comment.objects.get(id=id)
@@ -240,12 +240,12 @@ def postcreate(request):
                 if receiverchoose(i, obj):
                     receiver=i.user
                     if receiver!= request.user:
-                        notify.send(request.user, recipient=receiver, verb=" He is searching a teacher like you" + f''' <a href="/tuition/postdetail/{obj.id}/"> go</a> ''')
+                        notify.send(request.user, recipient=receiver, verb=" He is searching a Employee like you" + f''' <a href="/jobpost/postdetail/{obj.id}/"> go</a> ''')
 
             return HttpResponse("Success")
     else:
         form = PostForm(district_set=District.objects.all().order_by('name'))
-    return render(request, 'tuition/postcreate.html', {'form':form})
+    return render(request, 'jobpost/postcreate.html', {'form':form})
 
 import requests
 import json
@@ -255,7 +255,7 @@ def postview(request):
         api = json.loads(api_request.content)
     except :
         api = "Error"
-    return render(request, 'tuition/postlistapi.html',{'api':api})
+    return render(request, 'jobpost/postlistapi.html',{'api':api})
 
 from django.http import HttpResponseRedirect
 
@@ -267,7 +267,7 @@ def likedpost(request, id):
         else:
             post.likes.add(request.user)
             if request.user != post.user:
-                notify.send(request.user, recipient=post.user, verb="has liked your post " + f'''<a href="/tuition/postdetail/{post.id}">Go</a>''')
+                notify.send(request.user, recipient=post.user, verb="has liked your post " + f'''<a href="/jobpost/postdetail/{post.id}">Go</a>''')
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
@@ -296,17 +296,17 @@ def addphoto(request,id):
             obj=PostFile(image=image, post=post)
             obj.save()
             messages.success(request,'successfully uploaded image')
-            return redirect(f"/tuition/postdetail/{id}/")
+            return redirect(f"/jobpost/postdetail/{id}/")
     else:
         form=FileModelForm()
     context={
         'form':form,
         'id': id,
     }
-    return render(request, 'tuition/addphoto.html', context)
+    return render(request, 'jobpost/addphoto.html', context)
 
 def apply(request, id):
     post = Post.objects.get(id=id)
-    notify.send(request.user, recipient=post.user, verb="has applied for your tuition" + f'''<a href="/session/otherprofile/{request.user.username}/">See Profile</a>''')
-    messages.success(request, 'You Have successfully applied for this tuition!')
+    notify.send(request.user, recipient=post.user, verb="has applied for your Job" + f'''<a href="/jobpost/otherprofile/{request.user.username}/">See Profile</a>''')
+    messages.success(request, 'You Have successfully applied for this Job!')
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))

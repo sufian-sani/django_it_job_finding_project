@@ -154,4 +154,4 @@ def jobprofile(request):
     context={
         'form':form
     }
-    return render(request, 'session/tuitionProfileCreate.html', context)
+    return render(request, 'session/jobProfileCreate.html', context)

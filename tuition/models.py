@@ -59,7 +59,7 @@ class Post(models.Model):
     )
     category = models.CharField(max_length=100, choices=CATEGORY)
     created_at = models.DateTimeField(default=now)
-    image = models.ImageField(default='default.jpg', upload_to='tuition/images')
+    image = models.ImageField(default='default.jpg', upload_to='jobpost/images')
 
     # MEDIUM = (
     #     ('bangla','bangla'),
@@ -149,7 +149,7 @@ class Post(models.Model):
     items = PostManager()
 
 class PostFile(models.Model):
-    image = models.ImageField(upload_to="tuition/images")
+    image = models.ImageField(upload_to="jobpost/images")
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='images')
     def save(self, *args, **kwargs):
         super(PostFile, self).save(*args, **kwargs)
